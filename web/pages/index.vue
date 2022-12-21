@@ -64,7 +64,7 @@ export default {
   },
   computed: {
     getTasks () {
-      return this.filterSelected === 'ALL' ? this.tasks : this.tasks.filter(e => e.status.value === this.filterSelected)
+      return this.filterSelected === 'ALL' ? this.tasksSorted(this.tasks) : this.tasksSorted(this.tasks).filter(e => e.status.value === this.filterSelected)
     }
   },
   methods: {
@@ -76,6 +76,9 @@ export default {
       }
 
       this.tasks = tasks
+    },
+    tasksSorted (tasks) {
+      return tasks.sort((a, b) => a.date.localeCompare(b.date) || b.createdAt - a.createdAt)
     },
     async removeTask (id) {
       await this.$api.tasks.remove(id)

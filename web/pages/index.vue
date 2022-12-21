@@ -22,9 +22,9 @@
             </p>
             <div class="flex gap-2 ml-auto">
               <NuxtLink :to="{ name: 'id', params: { id: task.id } }">
-                <SvgIcon name="icons/pencil" class="p-1 w-4 h-4 bg-indigo-600 text-white rounded" />
+                <SvgIcon name="icons/pencil" class="p-1 w-5 h-5 bg-indigo-600 text-white rounded" />
               </NuxtLink>
-              <SvgIcon @click="removeTask(task.id)" name="icons/trash" class="p-1 w-4 h-4 bg-red-600 text-white rounded cursor-pointer" />
+              <SvgIcon @click="removeTask(task.id)" name="icons/trash" class="p-1 w-5 h-5 bg-red-600 text-white rounded cursor-pointer" />
             </div>
           </div>
           <div class="flex flex-col md:flex-row items-baseline justify-between gap-2 my-2.5">

@@ -85,7 +85,12 @@ export default {
     },
     async createOrEditTask () {
       if (this.form.title !== '' && this.form.description !== '' && this.form.date !== '' && this.form.status !== '') {
-        return this.formMode === 'add' ? await this.$api.tasks.create(this.form) : await this.$api.tasks.update(this.form.id, this.form)
+        if (this.formMode === 'add') {
+          await this.$api.tasks.create(this.form)
+        } else {
+          await this.$api.tasks.update(this.form.id, this.form)
+        }
+        await this.$router.push('/')
       } else {
         this.message = 'Please complete all fields'
       }

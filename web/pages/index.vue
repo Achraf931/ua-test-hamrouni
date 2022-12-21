@@ -4,7 +4,7 @@
       <h1 class="text-lg text-gray-700">
         My Tasks
       </h1>
-      <FormSelect class="w-40" name="Filters" :value="filters[0]" :options="filters" />
+      <FormSelect class="w-40" name="Filters" :value="filterSelected" :options="filters" @input="filterSelected = $event" />
     </div>
     <p v-if="$fetchState.pending">
       Fetching tasks...
@@ -14,7 +14,7 @@
     </p>
     <div v-else>
       <ul class="bg-white rounded-xl shadow-md text-gray-900">
-        <li v-for="task in tasks" :key="task.id" class="text-sm text-gray-500 px-6 py-4 gap-2 border-b border-[#E5E7EB] w-full first:rounded-t-xl last:rounded-b-xl">
+        <li v-for="task in getTasks" :key="task.id" class="text-sm text-gray-500 px-6 py-4 gap-2 border-b border-[#E5E7EB] w-full first:rounded-t-xl last:rounded-b-xl">
           <div class="flex items-center">
             <UiStatus :status="task.status" />
             <p class="text-indigo-600">
@@ -29,7 +29,9 @@
             <p v-html="task.description" />
             <div class="flex items-center gap-2">
               <SvgIcon name="icons/calendar" class="w-4 h-4 text-gray-400 rounded" />
-              <p class="text-xs md:text-sm">{{ new Date(task.createdAt).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'long', day: '2-digit' }) }}</p>
+              <p class="text-xs md:text-sm">
+                {{ new Date(task.createdAt).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'long', day: '2-digit' }) }}
+              </p>
             </div>
           </div>
           <div class="flex flex-col md:flex-row gap-2 text-xs">
@@ -51,7 +53,8 @@ export default {
   data () {
     return {
       tasks: [],
-      filters: TASK_STATUS
+      filters: TASK_STATUS,
+      filterSelected: 'ALL'
     }
   },
   async fetch () {
@@ -62,6 +65,11 @@ export default {
     }
 
     this.tasks = tasks
+  },
+  computed: {
+    getTasks () {
+      return this.filterSelected === 'ALL' ? this.tasks : this.tasks.filter(e => e.status.value === this.filterSelected)
+    }
   }
 }
 </script>

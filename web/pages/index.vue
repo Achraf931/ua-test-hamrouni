@@ -22,7 +22,7 @@
             </p>
             <div class="flex gap-2 ml-auto">
               <SvgIcon name="icons/pencil" class="p-1 w-4 h-4 bg-indigo-600 text-white rounded cursor-pointer" />
-              <SvgIcon name="icons/trash" class="p-1 w-4 h-4 bg-red-600 text-white rounded cursor-pointer" />
+              <SvgIcon @click="removeTask(task.id)" name="icons/trash" class="p-1 w-4 h-4 bg-red-600 text-white rounded cursor-pointer" />
             </div>
           </div>
           <div class="flex flex-col md:flex-row items-baseline justify-between gap-2 my-2.5">
@@ -58,17 +58,26 @@ export default {
     }
   },
   async fetch () {
-    const [err, tasks] = await this.$api.tasks.findAll()
-
-    if (err) {
-      throw new Error(err)
-    }
-
-    this.tasks = tasks
+    await this.fetchAllTasks()
   },
   computed: {
     getTasks () {
       return this.filterSelected === 'ALL' ? this.tasks : this.tasks.filter(e => e.status.value === this.filterSelected)
+    }
+  },
+  methods: {
+    async fetchAllTasks () {
+      const [err, tasks] = await this.$api.tasks.findAll()
+
+      if (err) {
+        throw new Error(err)
+      }
+
+      this.tasks = tasks
+    },
+    async removeTask (id) {
+      await this.$api.tasks.remove(id)
+      await this.fetchAllTasks()
     }
   }
 }

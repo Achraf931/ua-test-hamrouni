@@ -103,5 +103,7 @@ export default class TasksService extends ApiModel {
    * @param {*} id
    * @returns
    */
-  // this.delete(url)
+  remove (id) {
+    return this.delete(`${id}`)
+  }
 }

@@ -5,9 +5,9 @@
         <SvgIcon name="icons/logo" class="w-10 h-10" />
         Task editor
       </NuxtLink>
-      <button class="py-2 px-4 transition-colors duration-100 ease-in-out rounded-md bg-white text-indigo-600 hover:bg-indigo-600 hover:text-white">
+      <NuxtLink to="/add-task" class="py-2 px-4 transition-colors duration-100 ease-in-out rounded-md bg-white text-indigo-600 hover:bg-indigo-600 hover:text-white">
         Add
-      </button>
+      </NuxtLink>
     </div>
   </header>
 </template>

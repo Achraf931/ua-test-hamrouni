@@ -4,6 +4,9 @@
       {{ label }}
     </label>
     <select v-model="newValue" :name="name" class="block focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border-gray-300 rounded-md w-full">
+      <option v-if="placeholder" value="" selected disabled>
+        {{ placeholder }}
+      </option>
       <option v-for="option in options" :key="option.value" :value="option.value">
         {{ option.label }}
       </option>
@@ -29,6 +32,10 @@ export default {
     options: {
       type: Array,
       required: true
+    },
+    placeholder: {
+      type: String,
+      default: ''
     }
   },
   data () {

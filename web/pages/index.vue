@@ -13,7 +13,7 @@
       Unable to fetch tasks.
     </p>
     <div v-else>
-      <ul class="bg-white rounded-xl shadow-md text-gray-900">
+      <ul class="bg-white rounded-xl shadow-md">
         <li v-for="task in getTasks" :key="task.id" class="text-sm text-gray-500 px-6 py-4 gap-2 border-b border-[#E5E7EB] w-full first:rounded-t-xl last:rounded-b-xl">
           <div class="flex items-center">
             <UiStatus :status="task.status" />
@@ -21,7 +21,9 @@
               {{ task.title }}
             </p>
             <div class="flex gap-2 ml-auto">
-              <SvgIcon name="icons/pencil" class="p-1 w-4 h-4 bg-indigo-600 text-white rounded cursor-pointer" />
+              <NuxtLink :to="{ name: 'edit-task', params: { id: task.id } }">
+                <SvgIcon name="icons/pencil" class="p-1 w-4 h-4 bg-indigo-600 text-white rounded" />
+              </NuxtLink>
               <SvgIcon @click="removeTask(task.id)" name="icons/trash" class="p-1 w-4 h-4 bg-red-600 text-white rounded cursor-pointer" />
             </div>
           </div>
@@ -35,7 +37,7 @@
             </div>
           </div>
           <div class="flex flex-col md:flex-row gap-2 text-xs">
-            <p>{{ `Created at ${new Date(task.createdAt).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'long', day: '2-digit' })}` }}</p>
+            <p>{{ `Created at ${new Date(task.createdAt).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'long', day: '2-digit', hour: 'numeric', hourCycle: 'h24' })}` }}</p>
             <p class="font-semibold">
               {{ `Updated at ${new Date(task.updatedAt).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'long', day: '2-digit', hour: 'numeric', hourCycle: 'h24' })}` }}
             </p>

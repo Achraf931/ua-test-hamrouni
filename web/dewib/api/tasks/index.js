@@ -86,7 +86,11 @@ export default class TasksService extends ApiModel {
    * @param {*} form
    * @returns Task
    */
-  // this.post(url, body, { fields: TASK_FIELDS })
+  create (form) {
+    return this.post('', form, {
+      fields: TASK_FIELDS
+    })
+  }
 
   /**
    * Update a task ?

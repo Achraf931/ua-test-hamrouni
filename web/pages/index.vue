@@ -35,7 +35,7 @@
           <div class="flex flex-col md:flex-row gap-2 text-xs">
             <p>{{ `Created at ${new Date(task.createdAt).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'long', day: '2-digit' })}` }}</p>
             <p class="font-semibold">
-              {{ `Created at ${new Date(task.updatedAt).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'long', day: '2-digit', hour: 'numeric', hourCycle: 'h24' })}` }}
+              {{ `Updated at ${new Date(task.updatedAt).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'long', day: '2-digit', hour: 'numeric', hourCycle: 'h24' })}` }}
             </p>
           </div>
         </li>

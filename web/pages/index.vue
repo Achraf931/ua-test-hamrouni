@@ -1,5 +1,5 @@
 <template>
-  <main class="my-10 px-5 container mx-auto flex-1">
+  <main class="py-10 px-5 container mx-auto flex-1">
     <div class="flex py-5 items-center justify-between mb-8 border-b border-solid border-gray-200">
       <h1 class="text-lg text-gray-700">
         My Tasks
@@ -21,7 +21,7 @@
               {{ task.title }}
             </p>
             <div class="flex gap-2 ml-auto">
-              <NuxtLink :to="{ name: 'edit-task', params: { id: task.id } }">
+              <NuxtLink :to="{ name: 'id', params: { id: task.id } }">
                 <SvgIcon name="icons/pencil" class="p-1 w-4 h-4 bg-indigo-600 text-white rounded" />
               </NuxtLink>
               <SvgIcon @click="removeTask(task.id)" name="icons/trash" class="p-1 w-4 h-4 bg-red-600 text-white rounded cursor-pointer" />

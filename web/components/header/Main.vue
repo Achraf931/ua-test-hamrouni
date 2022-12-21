@@ -5,9 +5,19 @@
         <SvgIcon name="icons/logo" class="w-10 h-10" />
         Task editor
       </NuxtLink>
-      <NuxtLink to="/add-task" class="py-2 px-4 transition-colors duration-100 ease-in-out rounded-md bg-white text-indigo-600 hover:bg-indigo-600 hover:text-white">
+      <NuxtLink v-if="$route.fullPath === '/'" to="/add-task" class="py-2 px-4 transition-colors duration-100 ease-in-out rounded-md bg-white text-indigo-600 hover:bg-indigo-600 hover:text-white">
         Add
       </NuxtLink>
     </div>
   </header>
 </template>
+
+<script>
+export default {
+  watch: {
+    '$route.fullPath' (newVal) {
+      return newVal
+    }
+  }
+}
+</script>
